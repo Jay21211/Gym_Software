@@ -5,7 +5,7 @@ public class Member implements Comparable<Member> {
 
     public Member(Profile profile, Date expire, Location homeStudio){
         this.profile = profile;
-        this. expire = expire;
+        this.expire = expire;
         this.homeStudio = homeStudio;
     }
 

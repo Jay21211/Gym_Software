@@ -18,40 +18,40 @@ public class StudioManager {
             }
             switch (command) {
                 case "AB":
-
+                    addBasic(commandLine,cmd_arr,command);
                     break;
                 case "AF":
-
+                    addFamily(commandLine,cmd_arr,command);
                     break;
                 case "AP":
-
+                    addPremium(commandLine,cmd_arr,command);
                     break;
                 case "C":
-
+                    cancel(commandLine,cmd_arr,command);
                     break;
                 case "S":
-
+                    schedule(commandLine,cmd_arr,command);
                     break;
                 case "PM":
-
+                    pm(cmd_arr);
                     break;
                 case "PC":
-
+                    pc(cmd_arr);
                     break;
                 case "PF":
-
+                    pf(cmd_arr);
                     break;
                 case "R":
-
+                    memberAttendance(commandLine,cmd_arr,command);
                     break;
                 case "U":
-
+                    removeMember(commandLine,cmd_arr,command);
                     break;
                 case "RG":
-
+                    guestAttendance(commandLine,cmd_arr,command);
                     break;
                 case "UG":
-
+                    removeGuest(commandLine,cmd_arr,command);
                     break;
                 case "Q":
                     System.out.println("Studio Manager terminated.");

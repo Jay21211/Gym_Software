@@ -15,21 +15,68 @@ public class MemberList {
         this.size = 0;
     }
     private int find(Member member) {
-
+        for (int i = 0; i < size; i++) {
+            if (members[i] != null && members[i].equals(members)) {
+                return i;
+            }
+        }
+        return NOT_FOUND;
     }
 
 
 
-    private void grow() { }
+    private void grow() {
+        if(size>= members.length) {
+            Member[] newAlbums = new Member[members.length + GROWTH_FACTOR];
+            System.arraycopy(members, 0, newAlbums, 0, size);
+            members = newAlbums;
+        }
+    }
+
     public boolean contains(Member member) {
-
+        for(int i = 0; i< size; i++){
+            if(members[i].equals(member)){
+                return true;
+            }
+        }
+        return false;
     }
+
     public boolean add(Member member) {
+        if (contains(member)) {
+            return false; // Album already exists
+        } else {
+            if (size >= members.length) {
+                grow();
+            }
+            if(member.getExpire().isValid() && member.getProfile().getDob().isValid()) {
+                members[size++] = member;
+                return true;
+            }
+        }
+        return false;
 
     } //add to end of array
     public boolean remove(Member member) {
-
-    } //shift up to remove
+        if (contains(member)) {
+            int index = find(member);
+            if (index == NOT_FOUND) {
+                return false; // Album not found
+            } else {
+                Member copy = members[index];
+                if (member.equals(copy)) {
+                    // Shift elements up one position
+                    for (int i = index; i < size - 1; i++) {
+                        members[i] = members[i + 1];
+                    }
+                    members[size - 1] = null; // Set the last element to null
+                    size--;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public void load(File file) throws IOException {
 
     }//from the text file

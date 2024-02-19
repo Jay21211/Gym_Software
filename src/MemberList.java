@@ -4,9 +4,22 @@ import java.io.IOException;
 public class MemberList {
     private Member [] members; //holds Basic, Family, or Premium objects
     private int size; //number of objects in the array
+
+    private static final int INITIAL_CAPACITY = 4;
+    private static final int GROWTH_FACTOR = 4;
+    private static final int NOT_FOUND = -1;
+    private static final int EMPTY = 0;
+
+    public MemberList(){
+        this.members = new Member[INITIAL_CAPACITY];
+        this.size = 0;
+    }
     private int find(Member member) {
 
     }
+
+
+
     private void grow() { }
     public boolean contains(Member member) {
 

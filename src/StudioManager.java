@@ -4,6 +4,7 @@ public class StudioManager {
     private MemberList memberList;
 
     public StudioManager(){
+
         this.memberList = new MemberList();
     }
     public void run() {
@@ -11,7 +12,7 @@ public class StudioManager {
         System.out.println("Studio Manager is up running.");
         while (true) {
             String commandLine = scanner.nextLine();
-            String[] cmd_arr = commandLine.split(",");
+            String[] cmd_arr = commandLine.split(" ");
             String command = cmd_arr[0].trim();
             if (commandLine.isEmpty()) {
                 continue;
@@ -66,15 +67,27 @@ public class StudioManager {
         }
     }
     private  void addBasic(String commandLine, String[] cmd_arr, String command) {
+    if(cmd_arr.length == 5){
+    Member member = createMember(cmd_arr);
+    if(member!= null){
+    if(!memberList.contains(member)){
+    memberList.add(member);
+    System.out.println(member.getProfile().getFname() + " " + member.getProfile().getLname() + " added.");
+    }
+    }
+    }
     }
 
     private  void addFamily(String commandLine, String[] cmd_arr, String command) {
+
     }
 
     private  void addPremium(String commandLine, String[] cmd_arr, String command) {
+
     }
 
     private  void cancel(String commandLine, String[] cmd_arr, String command) {
+
     }
     private  void schedule(String commandLine, String[] cmd_arr, String command) {
     }
@@ -84,7 +97,7 @@ public class StudioManager {
     }
 
     private void pc(String[] cmd_arr){
-
+    memberList.printByCounty();
     }
     private void pf(String[] cmd_arr){
 
@@ -103,10 +116,40 @@ public class StudioManager {
 
     }
 
-    private MemberList createMemberList(String[] cmd_arr){
+    private Member createMember(String[] cmd_arr){
         try{
+            String firstName = cmd_arr[1];
+            String lastName = cmd_arr[2];
+            String birthDate = cmd_arr[3];
+            String location = cmd_arr[4];
 
+            String[] dobArr = birthDate.split("/");
+            int dobMonth = Integer.parseInt(dobArr[0]);
+            int dobDay = Integer.parseInt(dobArr[1]);
+            int dobYear = Integer.parseInt(dobArr[2]);
+
+            Date dob = new Date(dobYear,dobMonth,dobDay);
+            if(!dob.isValid()){
+                System.out.println("DOB " + dob.toString() + ": invalid calender date!");
+            }
+            Profile p1 = new Profile(firstName,lastName, dob);
+
+            Location l1 = Location.findLocation(location);
+
+
+            Date expire = Date.calculateExpiration(cmd_arr[0]);
+            if(cmd_arr[0].equals("AB")) {
+                return new Basic(p1, expire, l1);
+            }
+            if(cmd_arr[0].equals("AF")){
+                return new Family(p1,expire,l1);
+            }
+            if(cmd_arr[0].equals("AP")){
+                return new Premium(p1,expire,l1);
+            }
+        } catch (IllegalArgumentException ignored) {
         }
+        return null;
     }
 
 

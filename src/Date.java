@@ -46,6 +46,36 @@ public class Date implements Comparable<Date> {
         return day;
     }
 
+    public static Date calculateExpiration(String command){
+        Calendar current = Calendar.getInstance();
+        int year = current.get(Calendar.YEAR);
+        int month = current.get(Calendar.MONTH);
+        int day = current.get(Calendar.DAY_OF_MONTH);
+
+        if(command.equals("AB")){
+            current.add(Calendar.MONTH, 1);
+            // Ensure that the day of the month doesn't exceed the last day of the month
+            int lastDay = current.getActualMaximum(Calendar.DAY_OF_MONTH);
+            current.set(Calendar.DAY_OF_MONTH, Math.min(current.get(Calendar.DAY_OF_MONTH), lastDay));
+            return new Date(year,month,day);
+        }
+        if(command.equals("AF")){
+            current.add(Calendar.MONTH, 3);
+            // Ensure that the day of the month doesn't exceed the last day of the month
+            int lastDay = current.getActualMaximum(Calendar.DAY_OF_MONTH);
+            current.set(Calendar.DAY_OF_MONTH, Math.min(current.get(Calendar.DAY_OF_MONTH), lastDay));
+            return new Date(year,month,day);
+        }
+        if(command.equals("AP")){
+            current.add(Calendar.YEAR, 1);
+            // Ensure that the day of the month doesn't exceed the last day of the month
+            int lastDay = current.getActualMaximum(Calendar.DAY_OF_MONTH);
+            current.set(Calendar.DAY_OF_MONTH, Math.min(current.get(Calendar.DAY_OF_MONTH), lastDay));
+            return new Date(year,month,day);
+        }
+        return null;
+    }
+
     /**
      * Checks if the date is a valid calendar date.
      * @return true if the date is valid, false otherwise.
@@ -156,6 +186,7 @@ public class Date implements Comparable<Date> {
      */
     @Override
     public String toString(){
+
         return month + "/" + day + "/" + year;
     }
 

@@ -57,12 +57,4 @@ public class Profile implements Comparable<Profile> {
 
         return dob.compareTo(other.dob);
     }
-
-    @Override
-    public String toString() {
-
-StringBuilder sb = new StringBuilder();
-sb.append(fname).append(":").append(lname).append(dob).append(", Membership expires ").append()
-
-    }
 }

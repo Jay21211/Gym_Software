@@ -14,9 +14,15 @@ public class Member implements Comparable<Member> {
         return profile;
     }
 
+
     public Date getExpire(){
 
         return  expire;
+    }
+
+    public Date setExpire(Date newExpire){
+        this.expire = newExpire;
+        return expire;
     }
 
     public Location getHomeStudio(){
@@ -25,8 +31,15 @@ public class Member implements Comparable<Member> {
     }
 
     public double bill() {
-
+return 0.0;
     } //return the next due amount
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(profile.getFname()).append(":").append(profile.getLname()).append(profile.getDob().toString()).append(", Membership expires ").append(expire.toString()).append(", Location: ").append(homeStudio.toString());
+        return sb.toString();
+    }
 
 
     @Override
@@ -47,4 +60,9 @@ public class Member implements Comparable<Member> {
     return true;
     }
 
+
+    @Override
+    public int compareTo(Member o) {
+        return 0;
+    }
 }

@@ -31,23 +31,16 @@ public class FitnessClass {
     }
 
     public Time getTime(){
-        return
-                time;
+        return time;
     }
 
     public MemberList getMembers(){
-        return
-                members;
+
+        return members;
     }
 
     public MemberList getGuests(){
-        return
-                guests;
+
+        return guests;
     }
-
-
-
-
-
-
 }

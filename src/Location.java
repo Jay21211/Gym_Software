@@ -29,5 +29,14 @@ public enum Location {
 
         return county;
     }
+    public static Location findLocation(String input) {
+        for (Location location : Location.values()) {
+            if (location.name.equalsIgnoreCase(input)) {
+                return location;
+            }
+        }
+        return null; // If no match is found
+    }
+
 }
 
